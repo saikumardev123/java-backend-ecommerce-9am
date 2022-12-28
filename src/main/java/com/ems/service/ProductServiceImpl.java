@@ -25,13 +25,13 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
 	public List<Product> get() {
 		// TODO Auto-generated method stub
-		return null;
+		return productDAO.get();
 	}
 
     @Transactional
 	public Product getByid(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return productDAO.getByid(id);
 	}
 
     @Transactional

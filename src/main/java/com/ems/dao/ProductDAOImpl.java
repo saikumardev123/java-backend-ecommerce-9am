@@ -21,22 +21,23 @@ public class ProductDAOImpl  implements ProductDAO{
 	public void add(Product product) {
 		// TODO Auto-generated method stub
 		Session session = entityManager.unwrap(Session.class);
-		// code
-		 System.out.println("In productDAO Impl" + product);
-		 session.save(product);
-		
+		 System.out.println("I am in save"+ session.save(product));
 	}
 
 	@Override
 	public List<Product> get() {
 		// TODO Auto-generated method stub
-		return null;
+		Session session = entityManager.unwrap(Session.class);
+		List<Product> list = session.createQuery("from Product").list();
+		return list;
 	}
 
 	@Override
 	public Product getByid(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		Session session = entityManager.unwrap(Session.class);
+		Product product =  session.load(Product.class, id);
+		return product;
 	}
 
 
