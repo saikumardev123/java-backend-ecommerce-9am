@@ -8,26 +8,27 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ems.model.Employee;
-import com.ems.model.Product;
+import com.ems.model.User;
 
 @Repository
-public class ProductDAOImpl  implements ProductDAO{
+public class UserDAOImpl  implements UserDAO{
 	
 	@Autowired
 	 EntityManager entityManager;
 		
 	@Override
-	public boolean add(Product product) {
+	public boolean add( User user) {
 		// TODO Auto-generated method stub
 		Session session = entityManager.unwrap(Session.class);
 		boolean status =  false;
-		List<Product> list =  get();
+		List<User> list =  get();
 		System.out.println("before list"+list.size());
 		
-		  session.save(product);
+		// perform encryption mechanism
+		
+		  session.save(user);
 		  
-		  List<Product> list2 =  get();
+		  List<User> list2 =  get();
 			System.out.println("after list"+list2.size());
 			
 			if((list.size()+1) == list2.size()) {
@@ -42,40 +43,30 @@ public class ProductDAOImpl  implements ProductDAO{
 	}
 
 	@Override
-	public List<Product> get() {
+	public List<User> get() {
 		// TODO Auto-generated method stub
 		Session session = entityManager.unwrap(Session.class);
-		List<Product> list = session.createQuery("from Product").list();
+		List<User> list = session.createQuery("from User").list();
 		return list;
 	}
 
 	@Override
-	public Product getByid(int id) {
+	public User getByid(int id) {
 		// TODO Auto-generated method stub
 		Session session = entityManager.unwrap(Session.class);
-		Product product =  session.load(Product.class, id);
-		return product;
+		User user =  session.load(User.class, id);
+		return user;
 	}
 
 
 	@Override
-	public void update(Product product) {
+	public void update(User user) {
 		// TODO Auto-generated method stub
 		Session session = entityManager.unwrap(Session.class);
-		// code
-		 System.out.println("In productDAO Impl" + product);
-		 session.update(product);
+		
+		 session.update(user);
 	}
 	
-	@Override
-	public void delete(int  id) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-		System.out.println("dao");
-				Session session = entityManager.unwrap(Session.class);
-				// code
-				Product product =  session.load(Product.class, id);
-				session.delete(product);
-	}
+		
 
 }

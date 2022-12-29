@@ -25,9 +25,18 @@ public class ProductController {
 	  ProductService productService;
 	
 	@PostMapping("/add")
-	 public void add(@RequestBody Product product) {
+	 public ResponseEntity add(@RequestBody Product product) {
 		
-		   productService.add(product);
+		   boolean response =  productService.add(product);
+		   
+		   if(response == true) {
+			   
+			   return new ResponseEntity(response,HttpStatus.OK);
+		   }
+		   else {
+			   return new ResponseEntity(response,HttpStatus.BAD_REQUEST);
+		   }
+		 
 	 }
 	
 	@PutMapping("/update")

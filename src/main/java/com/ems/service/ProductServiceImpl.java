@@ -17,9 +17,9 @@ public class ProductServiceImpl implements ProductService {
 	
 
     @Transactional
-	public void add(Product product) {
+	public boolean add(Product product) {
 		// TODO Auto-generated method stub
-		  productDAO.add(product);
+		  return productDAO.add(product);
 	}
 
     @Transactional
